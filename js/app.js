@@ -1,11 +1,7 @@
 function email_test(input) {
 	return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
 }
-<script>
-	function onSubmit(token) {
-		document.getElementById("demo-form").submit();
-   }
- </script>
+
 function map(n) {
 	google.maps.Map.prototype.setCenterWithOffset = function (latlng, offsetX, offsetY) {
 		var map = this;
@@ -1004,7 +1000,7 @@ function inputs_init(inputs) {
 					//'+38(999) 999 9999'
 					// '+375(99)999-99-99'
 					input.classList.add('_mask');
-					Inputmask("+375 (99) 9999999", {
+					Inputmask("+371 (99) 9999999", {
 						// "placeholder": '',
 						clearIncomplete: true,
 						clearMaskOnLostFocus: true,
