@@ -1,7 +1,31 @@
 function email_test(input) {
 	return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
 }
+let languageVisible = document.querySelector('.language__visible');
+let languageHidden = document.querySelector('.language__hidden');
 
+languageVisible.addEventListener('click', function (e) {
+	languageHidden.classList.add('visible');
+})
+
+function visibleUpTo() {
+	let footer = document.querySelector('.footer');
+	let upto = document.querySelector('.upto');
+
+	document.addEventListener('scroll', function (e) {
+		let offsetupto = offset(upto).top;
+		let offsetFooter = offset(footer).top;
+		let uptoHiddenOffset = offsetFooter - 550;
+
+		if (offsetupto > uptoHiddenOffset) {
+			upto.classList.add('hidden');
+		} else {
+			upto.classList.remove('hidden');
+		}
+	})
+}
+
+visibleUpTo();
 function map(n) {
 	google.maps.Map.prototype.setCenterWithOffset = function (latlng, offsetX, offsetY) {
 		var map = this;

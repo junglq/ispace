@@ -586,7 +586,35 @@ textarea.input {
 }
 
 a {
-  display: block;
+  display: inline-block;
+}
+
+.upto {
+  position: fixed;
+  right: 3%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  opacity: 1;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.upto.hidden {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.upto__link {
+  border-color: #f4522f !important;
 }
 
 ol.counter {
@@ -916,7 +944,7 @@ body.ie ._ibg img {
   padding: 30px 10px;
   position: fixed;
   top: 0px;
-  left: 0;
+  left: 0px;
   width: 100%;
   height: 100%;
   -webkit-transition: visibility 0.8s ease 0s;
@@ -996,6 +1024,7 @@ body.ie ._ibg img {
 }
 
 .popup__body {
+  position: relative;
   -webkit-transform: scale(0);
       -ms-transform: scale(0);
           transform: scale(0);
@@ -1009,14 +1038,114 @@ body.ie ._ibg img {
 }
 
 .popup__close {
-  width: 15px;
-  height: 15px;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 10px;
+  right: 10px;
   cursor: pointer;
   z-index: 30;
-  background: url("../img/icons/close.svg") 0 0 no-repeat;
+}
+
+.popup__title {
+  font-size: 25px;
+  line-height: 1.3;
+  color: #f4522f;
+  margin: 0px 0px 30px 0px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.popup__link {
+  font-weight: 700;
+  font-size: 25px;
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: 2px;
+}
+
+.popup__link a {
+  color: #f4522f;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.popup__subtitle {
+  letter-spacing: 2px;
+  font-weight: 200;
+  font-size: 25px;
+  margin: 0px 0px 50px 0px;
+}
+
+.popup__text {
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin: 0px 0px 30px 0px;
+}
+
+.popup__hit {
+  margin: 0px 0px 30px 0px;
+  color: #021a58;
+  font-weight: 700;
+}
+
+.popup_callback .popup__body {
+  max-width: 520px;
+  padding: 20px 70px;
+  text-align: center;
+}
+
+.popup_callback .popup__link {
+  margin: 0px 0px 50px 0px;
+}
+
+.popup_about .popup__body {
+  max-width: 1170px;
+  padding: 30px 40px;
+}
+
+.popup_works .popup__body {
+  max-width: 560px;
+  padding: 30px;
+}
+
+.popup_works .popup__subtitle {
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin: 0px 0px 30px 0px;
+}
+
+.popup_works .popup__link-works {
+  position: relative;
+  margin: 0px 0px 30px 0px;
+}
+
+.popup_works .popup__link-works a {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #021a58;
+  display: inline-block;
+}
+
+.popup_works .popup__link-works a span {
+  position: relative;
+}
+
+.popup_works .popup__link-works a span:after {
+  content: "";
+  position: absolute;
+  right: -36px;
+  top: -6px;
+  width: 31px;
+  height: 27px;
+  background: url(../img/link.svg) no-repeat center;
+  display: block;
 }
 
 /*
@@ -1067,7 +1196,7 @@ body.ie ._ibg img {
 
 .header {
   position: absolute;
-  z-index: 2020;
+  z-index: 23;
   top: 15px;
   left: 0;
   width: 100%;
@@ -1157,17 +1286,37 @@ body.ie ._ibg img {
 }
 
 .language__link.active {
+  cursor: pointer;
   color: #f4522f;
   padding-right: 20px;
   background: url(../img/triangle.svg) center right no-repeat;
 }
 
-.language__block {
-  display: none;
+.language__hidden {
+  opacity: 0;
   position: absolute;
+  -webkit-transition: opacity 0.3s ease 0s;
+  -o-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+  margin: 10px 0px 0px 0px;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 
-.language__block a:last-child {
+.language__hidden .language__link {
+  margin: 0px 0px 5px 0px;
+}
+
+.language__hidden .language__link:hover {
+  color: #c5300e;
+}
+
+.language__hidden.visible {
+  opacity: 1;
+}
+
+.language__hidden a:last-child {
   margin: 0px 0px 0px 0px;
 }
 
@@ -1222,15 +1371,29 @@ body.ie ._ibg img {
   margin: 0px 0px 40px 0px;
 }
 
+.footer__item-bottom-block {
+  margin: 0px 0px 30px 0px;
+}
+
+.footer__item-bottom-block:last-child {
+  margin: 0px 0px 0px 0px;
+}
+
 .footer__link {
-  margin: 0px 0px 20px 0px;
   font-size: 20px;
   letter-spacing: 3.9px;
   color: #fff;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 
-.footer__link:last-child {
-  margin: 0px 0px 0px 0px;
+.footer__link.phone {
+  line-height: 1.54;
+}
+
+.footer__link:hover {
+  color: #f4522f;
 }
 
 .footer__title {
@@ -1410,9 +1573,7 @@ body.ie ._ibg img {
 }
 
 .mainblock__btn.btn__works {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 270px;
-          flex: 0 1 270px;
+  min-width: 270px;
 }
 
 .mainblock__img img {
@@ -1515,6 +1676,7 @@ body.ie ._ibg img {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 auto;
           flex: 0 1 auto;
+  max-width: 275px;
 }
 
 .why {
@@ -1563,6 +1725,17 @@ body.ie ._ibg img {
   margin: 0px 0px 0px 0px;
 }
 
+.block__why-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 570px;
+  width: 100%;
+}
+
 .block__why-check {
   margin: 0px 80px 0px 0px;
 }
@@ -1582,7 +1755,7 @@ body.ie ._ibg img {
 
 .numbers__toptitle {
   text-align: center;
-  margin: 0px 0px 90px 0px;
+  margin: 0px 0px 50px 0px;
   font-size: 25px;
   font-weight: 900;
   letter-spacing: 2.25px;
@@ -1645,7 +1818,7 @@ body.ie ._ibg img {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 270px;
           flex: 0 0 270px;
-  padding: 20px 35px;
+  padding: 20px 15px;
   background-color: rgba(154, 216, 255, 0.35);
   text-align: center;
   display: -webkit-box;
@@ -1760,7 +1933,7 @@ body.ie ._ibg img {
 
 .info__contacts {
   position: absolute;
-  top: -30px;
+  top: -20px;
   left: 100px;
   padding: 60px 50px;
   border-radius: 20px;
@@ -1780,6 +1953,10 @@ body.ie ._ibg img {
 .info__link {
   margin: 0px 0px 30px 0px;
   max-width: 375px;
+}
+
+.info__link:last-child {
+  margin: 0px 0px 0px 0px;
 }
 
 .info__link-title {
