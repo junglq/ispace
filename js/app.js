@@ -5,8 +5,14 @@ let languageVisible = document.querySelector('.language__visible');
 let languageHidden = document.querySelector('.language__hidden');
 
 languageVisible.addEventListener('click', function (e) {
-	languageHidden.classList.add('visible');
+	if (languageHidden.classList.contains('visible')) {
+		languageHidden.classList.remove('visible');
+	} else {
+		languageHidden.classList.add('visible');
+	}
 })
+
+
 
 function visibleUpTo() {
 	let footer = document.querySelector('.footer');
@@ -209,25 +215,21 @@ if (location.hash) {
 }
 //=================
 //Menu
-let iconMenu = document.querySelector(".icon-menu");
-if (iconMenu != null) {
-	let delay = 500;
-	let menuBody = document.querySelector(".menu__body");
-	iconMenu.addEventListener("click", function (e) {
-		if (unlock) {
-			body_lock(delay);
-			iconMenu.classList.toggle("_active");
-			menuBody.classList.toggle("_active");
-		}
-	});
-};
-function menu_close() {
-	let iconMenu = document.querySelector(".icon-menu");
-	let menuBody = document.querySelector(".menu__body");
-	iconMenu.classList.remove("_active");
-	menuBody.classList.remove("_active");
-}
-//=================
+$('.header__burger').on('click', function () {
+	$('.header__burger,.menu__body,menu__body-close').addClass('_active');
+	$('body').addClass('_lock');
+})
+
+$('.menu__body-close').on('click', function () {
+	$('.header__burger,.menu__body,menu__body-close').removeClass('_active');
+	$('body').removeClass('_lock');
+})
+
+$('.menu__body-link').on('click', function () {
+	$('.header__burger,.menu__body,menu__body-close').removeClass('_active');
+	$('body').removeClass('_lock');
+})
+
 //BodyLock
 function body_lock(delay) {
 	let body = document.querySelector("body");
@@ -273,6 +275,11 @@ function body_lock_add(delay) {
 		}, delay);
 	}
 }
+//=================
+
+
+
+
 //=================
 
 // LettersAnimation
@@ -1409,7 +1416,7 @@ if (goto_links) {
 		});
 	}
 }
-function _goto(target_block, speed, offset = 0) {
+function _goto(target_block, speed, offset = 80) {
 	let header = '';
 	//OffsetHeader
 	//if (window.innerWidth < 992) {
