@@ -12,8 +12,6 @@ languageVisible.addEventListener('click', function (e) {
 	}
 })
 
-
-
 function visibleUpTo() {
 	let footer = document.querySelector('.footer');
 	let upto = document.querySelector('.upto');
@@ -32,6 +30,8 @@ function visibleUpTo() {
 }
 
 visibleUpTo();
+
+
 function map(n) {
 	google.maps.Map.prototype.setCenterWithOffset = function (latlng, offsetX, offsetY) {
 		var map = this;
@@ -219,17 +219,15 @@ $('.header__burger').on('click', function () {
 	$('.header__burger,.menu__body,menu__body-close').addClass('_active');
 	$('body').addClass('_lock');
 })
-
 $('.menu__body-close').on('click', function () {
 	$('.header__burger,.menu__body,menu__body-close').removeClass('_active');
 	$('body').removeClass('_lock');
 })
-
 $('.menu__body-link').on('click', function () {
 	$('.header__burger,.menu__body,menu__body-close').removeClass('_active');
 	$('body').removeClass('_lock');
 })
-
+//=================
 //BodyLock
 function body_lock(delay) {
 	let body = document.querySelector("body");
@@ -277,11 +275,6 @@ function body_lock_add(delay) {
 }
 //=================
 
-
-
-
-//=================
-
 // LettersAnimation
 let title = document.querySelectorAll('._letter-animation');
 if (title) {
@@ -304,79 +297,6 @@ if (title) {
 			el.innerHTML = new_title;
 			new_title = new_title + '&nbsp;</p>';
 		}
-	}
-}
-//=================
-//Tabs
-let tabs = document.querySelectorAll("._tabs");
-for (let index = 0; index < tabs.length; index++) {
-	let tab = tabs[index];
-	let tabs_items = tab.querySelectorAll("._tabs-item");
-	let tabs_blocks = tab.querySelectorAll("._tabs-block");
-	for (let index = 0; index < tabs_items.length; index++) {
-		let tabs_item = tabs_items[index];
-		tabs_item.addEventListener("click", function (e) {
-			for (let index = 0; index < tabs_items.length; index++) {
-				let tabs_item = tabs_items[index];
-				tabs_item.classList.remove('_active');
-				tabs_blocks[index].classList.remove('_active');
-			}
-			tabs_item.classList.add('_active');
-			tabs_blocks[index].classList.add('_active');
-			e.preventDefault();
-		});
-	}
-}
-//=================
-//Spollers
-let spollers = document.querySelectorAll("._spoller");
-let spollersGo = true;
-if (spollers.length > 0) {
-	for (let index = 0; index < spollers.length; index++) {
-		const spoller = spollers[index];
-		spoller.addEventListener("click", function (e) {
-			if (spollersGo) {
-				spollersGo = false;
-				if (spoller.classList.contains('_spoller-992') && window.innerWidth > 992) {
-					return false;
-				}
-				if (spoller.classList.contains('_spoller-768') && window.innerWidth > 768) {
-					return false;
-				}
-				if (spoller.closest('._spollers').classList.contains('_one')) {
-					let curent_spollers = spoller.closest('._spollers').querySelectorAll('._spoller');
-					for (let i = 0; i < curent_spollers.length; i++) {
-						let el = curent_spollers[i];
-						if (el != spoller) {
-							el.classList.remove('_active');
-							_slideUp(el.nextElementSibling);
-						}
-					}
-				}
-				spoller.classList.toggle('_active');
-				_slideToggle(spoller.nextElementSibling);
-
-				setTimeout(function () {
-					spollersGo = true;
-				}, 500);
-			}
-		});
-	}
-}
-//=================
-//Gallery
-let gallery = document.querySelectorAll('._gallery');
-if (gallery) {
-	gallery_init();
-}
-function gallery_init() {
-	for (let index = 0; index < gallery.length; index++) {
-		const el = gallery[index];
-		lightGallery(el, {
-			counter: false,
-			selector: 'a',
-			download: false
-		});
 	}
 }
 //=================
@@ -649,40 +569,6 @@ function quad(timeFraction) {
 function circ(timeFraction) {
 	return 1 - Math.sin(Math.acos(timeFraction));
 }
-/*
-animate({
-	duration: 1000,
-	timing: makeEaseOut(quad),
-	draw(progress) {
-		window.scroll(0, start_position + 400 * progress);
-	}
-});*/
-
-//Полифилы
-(function () {
-	// проверяем поддержку
-	if (!Element.prototype.closest) {
-		// реализуем
-		Element.prototype.closest = function (css) {
-			var node = this;
-			while (node) {
-				if (node.matches(css)) return node;
-				else node = node.parentElement;
-			}
-			return null;
-		};
-	}
-})();
-(function () {
-	// проверяем поддержку
-	if (!Element.prototype.matches) {
-		// определяем свойство
-		Element.prototype.matches = Element.prototype.matchesSelector ||
-			Element.prototype.webkitMatchesSelector ||
-			Element.prototype.mozMatchesSelector ||
-			Element.prototype.msMatchesSelector;
-	}
-})();
 //let btn = document.querySelectorAll('button[type="submit"],input[type="submit"]');
 let forms = document.querySelectorAll('form');
 if (forms.length > 0) {
